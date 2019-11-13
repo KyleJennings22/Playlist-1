@@ -36,7 +36,8 @@ class SongTableViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "songCell", for: indexPath)
-        
+        // Access a single song by using the .object function allowed from CoreData then pass in the indexPath.row to get the song
+        // Cast our object as a song
         if let song = playlist?.songs?.object(at: indexPath.row) as? Song {
             cell.textLabel?.text = song.name
             cell.detailTextLabel?.text = song.artist
