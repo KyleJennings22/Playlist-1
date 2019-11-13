@@ -34,10 +34,10 @@ class PlaylistTableViewController: UITableViewController {
         let playlist = PlaylistController.shared.playlists[indexPath.row]
         cell.textLabel?.text = playlist.name
         
-        if playlist.songs.count == 1 {
+        if playlist.songs?.count == 1 {
             cell.detailTextLabel?.text = "1 Song"
         } else {
-            cell.detailTextLabel?.text = "\(playlist.songs.count) Songs"
+            cell.detailTextLabel?.text = "\(playlist.songs?.count ?? 0) Songs"
         }
         
         return cell
@@ -47,7 +47,7 @@ class PlaylistTableViewController: UITableViewController {
         return "Playlists"
     }
     
-    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
             let playlist = PlaylistController.shared.playlists[indexPath.row]
             PlaylistController.shared.delete(playlist: playlist)
